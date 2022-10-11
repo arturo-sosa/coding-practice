@@ -1,1 +1,1 @@
-export {default} from './performance';
+export {default} from './function';
