@@ -60,7 +60,7 @@ export const getFunctionMetrics = async <T, O>(fn: Function, input?: T, expected
  * @param fns {ReportFunctionObject} array of function definitions to be reported
  * @returns {Promise<ReportObject>} object that contains all function reports ordered by index of execution
  */
-export const getReport = async (fns: [ReportFunctionObject]): Promise<ReportObject> => {
+export const getReport = async (fns: Array<ReportFunctionObject>): Promise<ReportObject> => {
     const root: SimpleMetrics = getEmptySimpleMetrics("Execution time report");
     const report: ReportObject = {root};
 

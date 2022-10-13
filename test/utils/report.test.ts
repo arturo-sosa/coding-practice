@@ -1,5 +1,5 @@
-import {getFunctionMetrics, getReport} from "utils/report";
-import type {FunctionMetrics} from "utils/report";
+import {getFunctionMetrics, getReport} from "../../src/utils/report";
+import type {FunctionMetrics} from "../../src/utils/report";
 
 describe("getFunctionMetrics", () => {
     test("should get execution time for a function", async () => {
