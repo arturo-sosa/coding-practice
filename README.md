@@ -53,3 +53,7 @@ Math problems that can be solved with programming
 ### [Code Wars](https://www.codewars.com/)
 
 Daily problems to solve created by the community
+
+### [HackerRank](https://www.hackerrank.com/)
+
+Coding challenges platform used in many interviews
