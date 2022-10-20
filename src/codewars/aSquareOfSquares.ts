@@ -1,5 +1,6 @@
 // https://www.codewars.com/kata/54c27a33fb7da0db0100040e
 import {getReport} from "../utils/report";
+import {getReportResults} from "../utils/report/report";
 
 /**
  * Check if a given number is a perfect square
@@ -45,5 +46,5 @@ const isPerfectSquare = (n: number): boolean => {
     },
   ]);
 
-  console.log(report);
+  console.log(getReportResults(report));
 })();

@@ -1,6 +1,7 @@
 // https://www.hackerrank.com/challenges/a-very-big-sum/problem
 
 import {getReport} from "../../utils/report";
+import {getReportResults} from "../../utils/report/report";
 
 /**
  * Sum evey number in an array handling big numbers
@@ -21,5 +22,5 @@ const aVeryBigSum = (ar: Array<number>): number => {
     },
   ]);
 
-  console.log(report);
+  console.log(getReportResults(report));
 })();

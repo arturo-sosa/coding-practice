@@ -1,6 +1,7 @@
 // https://www.codewars.com/kata/54da539698b8a2ad76000228
 
 import {getReport} from "../utils/report";
+import {getReportResults} from "../utils/report/report";
 
 const distance = 10;
 
@@ -70,5 +71,5 @@ const isValidWalk = (walk: Array<string>): boolean => {
     },
   ]);
 
-  console.log(report);
+  console.log(getReportResults(report));
 })();

@@ -1,4 +1,5 @@
-import {FunctionMetrics, getReport} from "../../utils/report";
+import {getReport} from "../../utils/report";
+import {getReportResults} from "../../utils/report/report";
 
 /**
  * Sum two strings numeric values
@@ -19,6 +20,5 @@ const sum = (a: string, b: string): number => {
     },
   ]);
 
-  console.log(report);
-  console.log("Problem solution:", (report[0] as FunctionMetrics).fn.output);
+  console.log(getReportResults(report));
 })();

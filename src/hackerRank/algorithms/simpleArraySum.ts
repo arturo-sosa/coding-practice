@@ -1,4 +1,5 @@
 import {getReport} from "../../utils/report";
+import {getReportResults} from "../../utils/report/report";
 
 /**
  * Sum all numbers in a given array
@@ -23,5 +24,5 @@ const simpleArraySum = (ar: Array<number>): number => {
     },
   ]);
 
-  console.log(report);
+  console.log(getReportResults(report));
 })();

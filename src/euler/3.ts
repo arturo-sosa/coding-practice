@@ -1,5 +1,8 @@
 // https://projecteuler.net/minimal=3
 
+import {getReportResults} from "../utils/report/report";
+import {getReport} from "../utils/report";
+
 /**
  * Verifies if a given number is a prime number or not
  * @param n {number} given number to verify
@@ -50,8 +53,6 @@ const getGreatestPrimeFactor = (n: number) => {
   return maxFactor;
 };
 
-import {FunctionMetrics, getReport} from "../utils/report";
-
 (async () => {
   const report = await getReport([
     {
@@ -76,6 +77,5 @@ import {FunctionMetrics, getReport} from "../utils/report";
     },
   ]);
 
-  console.log(report);
-  console.log("Problem solution:", (report[3] as FunctionMetrics).fn.output);
+  console.log(getReportResults(report));
 })();

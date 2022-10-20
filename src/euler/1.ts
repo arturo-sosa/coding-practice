@@ -1,5 +1,6 @@
 // https://projecteuler.net/minimal=1
-import {FunctionMetrics, getReport} from "../utils/report";
+import {getReport} from "../utils/report";
+import {getReportResults} from "../utils/report/report";
 
 /**
  * Find the sum of all numbers below limit that divisible by divisors
@@ -34,6 +35,5 @@ const getDivisibleNumbersSum = (divisors: Array<number>, limit: number) => {
     },
   ]);
 
-  console.log(report);
-  console.log("Problem solution:", (report[1] as FunctionMetrics).fn.output);
+  console.log(getReportResults(report));
 })();

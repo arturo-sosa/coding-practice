@@ -1,5 +1,6 @@
 // https://projecteuler.net/minimal=2
-import {FunctionMetrics, getReport} from "../utils/report";
+import {getReport} from "../utils/report";
+import {getReportResults} from "../utils/report/report";
 
 /**
  * Get the fibonacci sequence up to a number matching maxValue
@@ -43,6 +44,5 @@ const getEvenFibonacciSum = (maxNumber: number) => {
     },
   ]);
 
-  console.log(report);
-  console.log("Problem solution:", (report[1] as FunctionMetrics).fn.output);
+  console.log(getReportResults(report));
 })();
