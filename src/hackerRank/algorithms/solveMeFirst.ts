@@ -7,18 +7,18 @@ import {FunctionMetrics, getReport} from "../../utils/report";
  * @returns {number} sum of a dn b numeric values
  */
 const sum = (a: string, b: string): number => {
-    return Number(a) + Number(b);
+  return Number(a) + Number(b);
 };
 
 (async () => {
-    const report = await getReport([
-        {
-            fn: (a: string, b: string) => sum(a, b),
-            input: ["2", "3"],
-            expected: 5,
-        },
-    ]);
+  const report = await getReport([
+    {
+      fn: (a: string, b: string) => sum(a, b),
+      input: ["2", "3"],
+      expected: 5,
+    },
+  ]);
 
-    console.log(report);
-    console.log("Problem solution:", (report[0] as FunctionMetrics).fn.output);
+  console.log(report);
+  console.log("Problem solution:", (report[0] as FunctionMetrics).fn.output);
 })();

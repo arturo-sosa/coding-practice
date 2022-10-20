@@ -10,65 +10,65 @@ const distance = 10;
  * @returns {boolean} truthy if the walk is doable at the given distance and the walks ends at the starting point, falsy if the walk is shorter or longer than the given distance or the walk do not finish at the starting point
  */
 const isValidWalk = (walk: Array<string>): boolean => {
-    if (walk.length != distance) return false;
+  if (walk.length != distance) return false;
 
-    const result = walk.reduce((acc: Array<number>, value: string) => {
-        const stepDirection = value === "n" || value === "e" ? 1 : -1;
+  const result = walk.reduce((acc: Array<number>, value: string) => {
+    const stepDirection = value === "n" || value === "e" ? 1 : -1;
 
-        if (value === "n" || value === "s")
-            acc[0] += stepDirection;
-        else
-            acc[1] += stepDirection;
+    if (value === "n" || value === "s")
+      acc[0] += stepDirection;
+    else
+      acc[1] += stepDirection;
 
-        return acc;
-    }, [0, 0]);
+    return acc;
+  }, [0, 0]);
 
-    return result[0] === 0 && result[1] === 0;
+  return result[0] === 0 && result[1] === 0;
 };
 
 (async () => {
-    const report = await getReport([
-        {
-            fn: (walk: Array<string>) => isValidWalk(walk),
-            input: [["n", "s", "n", "s", "n", "s", "n", "s", "n", "s"]],
-            expected: true,
-        },
-        {
-            fn: (walk: Array<string>) => isValidWalk(walk),
-            input: [["w", "e", "w", "e", "w", "e", "w", "e", "w", "e", "w", "e"]],
-            expected: false,
-        },
-        {
-            fn: (walk: Array<string>) => isValidWalk(walk),
-            input: [["w"]],
-            expected: false,
-        },
-        {
-            fn: (walk: Array<string>) => isValidWalk(walk),
-            input: [["n", "n", "n", "s", "n", "s", "n", "s", "n", "s"]],
-            expected: false,
-        },
-        {
-            fn: (walk: Array<string>) => isValidWalk(walk),
-            input: [["n", "s", "n", "s", "n", "s", "n", "s", "n", "w"]],
-            expected: false,
-        },
-        {
-            fn: (walk: Array<string>) => isValidWalk(walk),
-            input: [["w", "n", "e", "s"]],
-            expected: false,
-        },
-        {
-            fn: (walk: Array<string>) => isValidWalk(walk),
-            input: [["n", "s"]],
-            expected: false,
-        },
-        {
-            fn: (walk: Array<string>) => isValidWalk(walk),
-            input: [[]],
-            expected: false,
-        },
-    ]);
+  const report = await getReport([
+    {
+      fn: (walk: Array<string>) => isValidWalk(walk),
+      input: [["n", "s", "n", "s", "n", "s", "n", "s", "n", "s"]],
+      expected: true,
+    },
+    {
+      fn: (walk: Array<string>) => isValidWalk(walk),
+      input: [["w", "e", "w", "e", "w", "e", "w", "e", "w", "e", "w", "e"]],
+      expected: false,
+    },
+    {
+      fn: (walk: Array<string>) => isValidWalk(walk),
+      input: [["w"]],
+      expected: false,
+    },
+    {
+      fn: (walk: Array<string>) => isValidWalk(walk),
+      input: [["n", "n", "n", "s", "n", "s", "n", "s", "n", "s"]],
+      expected: false,
+    },
+    {
+      fn: (walk: Array<string>) => isValidWalk(walk),
+      input: [["n", "s", "n", "s", "n", "s", "n", "s", "n", "w"]],
+      expected: false,
+    },
+    {
+      fn: (walk: Array<string>) => isValidWalk(walk),
+      input: [["w", "n", "e", "s"]],
+      expected: false,
+    },
+    {
+      fn: (walk: Array<string>) => isValidWalk(walk),
+      input: [["n", "s"]],
+      expected: false,
+    },
+    {
+      fn: (walk: Array<string>) => isValidWalk(walk),
+      input: [[]],
+      expected: false,
+    },
+  ]);
 
-    console.log(report);
+  console.log(report);
 })();
