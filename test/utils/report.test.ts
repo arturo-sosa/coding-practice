@@ -1,5 +1,6 @@
 import type {FunctionMetrics} from "../../src/utils/report";
 import {getFunctionMetrics, getReport} from "../../src/utils/report";
+import {getReportResults} from "../../src/utils/report/report";
 
 describe("getFunctionMetrics", () => {
   test("should get execution time for a function", async () => {
@@ -58,5 +59,20 @@ describe("getReport", () => {
     const fnReport = report[0] as FunctionMetrics;
 
     expect(fnReport.fn.output).toEqual(output);
+  });
+});
+
+describe("getReportResults", () => {
+  test("should return the report results for executed functions", async () => {
+    const mockFn = jest.fn((a: number, b: number) => a + b);
+    const input = [1, 2];
+    const output = 3;
+    const report = await getReport([{fn: mockFn, input, expected: output}]);
+    const reportResults = getReportResults(report);
+
+    expect(reportResults[0].input).toEqual(JSON.stringify(input));
+    expect(reportResults[0].expected).toEqual(JSON.stringify(output));
+    expect(reportResults[0].output).toEqual(JSON.stringify(output));
+    expect(reportResults[0].matches).toEqual(true);
   });
 });

@@ -9,7 +9,7 @@ export type SimpleMetrics = {
 
 export type FunctionMetrics = SimpleMetrics & {
   fn: {
-    input?: unknown
+    input?: Array<unknown>
     output?: unknown
     expected?: unknown
     error?: Error
@@ -21,10 +21,18 @@ export type Report = SimpleMetrics | FunctionMetrics
 export type ReportObject = { [key: string]: Report }
 
 export type FnConfig = {
-  input?: unknown
+  input?: Array<unknown>
   expected?: unknown
 }
 
 export type ReportFunctionObject = FnConfig & {
   fn: Function
+}
+
+export type ReportResults = {
+  label: string
+  input: unknown
+  output: unknown
+  expected: unknown
+  matches: boolean
 }

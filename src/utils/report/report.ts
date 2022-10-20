@@ -1,4 +1,11 @@
-import {FnConfig, FunctionMetrics, ReportFunctionObject, ReportObject, SimpleMetrics} from "./report.types";
+import {
+  FnConfig,
+  FunctionMetrics,
+  ReportFunctionObject,
+  ReportObject,
+  ReportResults,
+  SimpleMetrics,
+} from "./report.types";
 
 /**
  * Creates a new simple report object
@@ -39,7 +46,7 @@ const getEmptyFunctionMetrics = (label: string, fn: FnConfig): FunctionMetrics =
  * @param expected {unknown} expected output for the function
  * @returns {Promise<FunctionMetrics>} object containing a label, time report and function report
  */
-export const getFunctionMetrics = async <T, O>(fn: Function, input?: T, expected?: O): Promise<FunctionMetrics> => {
+export const getFunctionMetrics = async <T, O>(fn: Function, input?: Array<T>, expected?: O): Promise<FunctionMetrics> => {
   const report: FunctionMetrics = getEmptyFunctionMetrics(fn.name, {input, expected});
 
   try {
@@ -75,6 +82,24 @@ export const getReport = async (fns: Array<ReportFunctionObject>): Promise<Repor
   root.time.total = root.time.endTime - root.time.startTime!;
 
   return report;
+};
+
+export const getReportResults = (report: ReportObject): Array<ReportResults> => {
+  return Object.keys(report).reduce((acc, key) => {
+    if (key === "root") return acc;
+
+    const metrics = report[key] as FunctionMetrics;
+
+    acc.push({
+      label: metrics.label,
+      input: JSON.stringify(metrics.fn.input ? metrics.fn.input : []),
+      expected: JSON.stringify(metrics.fn.expected),
+      output: JSON.stringify(metrics.fn.output),
+      matches: JSON.stringify(metrics.fn.expected) === JSON.stringify(metrics.fn.output),
+    });
+
+    return acc;
+  }, [] as Array<ReportResults>);
 };
 
 export default {
