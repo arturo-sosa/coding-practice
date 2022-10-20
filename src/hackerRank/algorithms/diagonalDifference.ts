@@ -1,4 +1,5 @@
 import {getReport} from "../../utils/report";
+import {getReportResults} from "../../utils/report/report";
 
 /**
  * Returns the absolute difference from diagonal 1 (top left to bottom right) and diagonal 2 (top right to bottom left) in a given array of numbers
@@ -27,5 +28,5 @@ const diagonalDifference = (arr: number[][]): number => {
     },
   ]);
 
-  console.log(report);
+  console.log(getReportResults(report));
 })();

@@ -1,4 +1,5 @@
 import {getReport} from "../utils/report";
+import {getReportResults} from "../utils/report/report";
 
 /**
  * Check if a given string is an isogram
@@ -44,5 +45,5 @@ const isIsogram = (str: string): boolean => {
     },
   ]);
 
-  console.log(report);
+  console.log(getReportResults(report));
 })();

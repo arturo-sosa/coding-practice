@@ -1,6 +1,7 @@
 // https://www.codewars.com/kata/546e2562b03326a88e000020
 
 import {getReport} from "../utils/report";
+import {getReportResults} from "../utils/report/report";
 
 /**
  * Return a number composed by every n digit squared
@@ -33,5 +34,5 @@ const squareDigits = (n: number): number => {
     },
   ]);
 
-  console.log(report);
+  console.log(getReportResults(report));
 })();

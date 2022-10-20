@@ -1,6 +1,7 @@
 // https://www.hackerrank.com/challenges/compare-the-triplets
 
 import {getReport} from "../../utils/report";
+import {getReportResults} from "../../utils/report/report";
 
 /**
  * Compare 2 scores against each others and returns the points awarded for each index in the scores.
@@ -39,5 +40,5 @@ const compareTriplets = (a: Array<number>, b: Array<number>): Array<number> => {
     },
   ]);
 
-  console.log(report);
+  console.log(getReportResults(report));
 })();

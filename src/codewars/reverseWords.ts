@@ -1,5 +1,6 @@
 // https://www.codewars.com/kata/5259b20d6021e9e14c0010d4
-import {FunctionMetrics, getReport} from "../utils/report";
+import {getReport} from "../utils/report";
+import {getReportResults} from "../utils/report/report";
 
 /**
  * Returns a word with the characters reversed
@@ -49,14 +50,5 @@ const reverseWords = (str: string): string => str.split(" ").map(reverseWord).jo
     },
   ]);
 
-  Object.keys(report).forEach(key => {
-    if (key === "root") return;
-
-    const metrics = report[key] as FunctionMetrics;
-    console.log(metrics.label);
-    console.log(`Input: ${JSON.stringify((metrics.fn.input as any)[0])}`);
-    console.log(`Expected: ${JSON.stringify(metrics.fn.expected)}`);
-    console.log(`Output: ${JSON.stringify(metrics.fn.output)}`);
-    console.log(`Result: ${metrics.fn.expected === metrics.fn.output}\n`);
-  });
+  console.log(getReportResults(report));
 })();
