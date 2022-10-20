@@ -6,14 +6,14 @@ import {FnConfig, FunctionMetrics, ReportFunctionObject, ReportObject, SimpleMet
  * @returns {SimpleMetrics} object containing only a label and time metrics
  */
 const getEmptySimpleMetrics = (label: string): SimpleMetrics => {
-    return {
-        label,
-        time: {
-            startTime: 0,
-            endTime: 0,
-            total: 0,
-        },
-    };
+  return {
+    label,
+    time: {
+      startTime: 0,
+      endTime: 0,
+      total: 0,
+    },
+  };
 };
 
 /**
@@ -23,13 +23,13 @@ const getEmptySimpleMetrics = (label: string): SimpleMetrics => {
  * @returns {FunctionMetrics} object containing a label, time report and function metrics
  */
 const getEmptyFunctionMetrics = (label: string, fn: FnConfig): FunctionMetrics => {
-    return {
-        ...getEmptySimpleMetrics(label),
-        fn: {
-            input: fn.input,
-            expected: fn.expected,
-        },
-    };
+  return {
+    ...getEmptySimpleMetrics(label),
+    fn: {
+      input: fn.input,
+      expected: fn.expected,
+    },
+  };
 };
 
 /**
@@ -40,19 +40,19 @@ const getEmptyFunctionMetrics = (label: string, fn: FnConfig): FunctionMetrics =
  * @returns {Promise<FunctionMetrics>} object containing a label, time report and function report
  */
 export const getFunctionMetrics = async <T, O>(fn: Function, input?: T, expected?: O): Promise<FunctionMetrics> => {
-    const report: FunctionMetrics = getEmptyFunctionMetrics(fn.name, {input, expected});
+  const report: FunctionMetrics = getEmptyFunctionMetrics(fn.name, {input, expected});
 
-    try {
-        report.time.startTime = performance.now();
-        report.fn.output = await fn.apply(null, input);
-    } catch (ex) {
-        report.fn.error = ex as Error;
-    } finally {
-        report.time.endTime = performance.now();
-        report.time.total = report.time.endTime - report.time.startTime!;
-    }
+  try {
+    report.time.startTime = performance.now();
+    report.fn.output = await fn.apply(null, input);
+  } catch (ex) {
+    report.fn.error = ex as Error;
+  } finally {
+    report.time.endTime = performance.now();
+    report.time.total = report.time.endTime - report.time.startTime!;
+  }
 
-    return report;
+  return report;
 };
 
 /**
@@ -61,23 +61,23 @@ export const getFunctionMetrics = async <T, O>(fn: Function, input?: T, expected
  * @returns {Promise<ReportObject>} object that contains all function reports ordered by index of execution
  */
 export const getReport = async (fns: Array<ReportFunctionObject>): Promise<ReportObject> => {
-    const root: SimpleMetrics = getEmptySimpleMetrics("Execution time report");
-    const report: ReportObject = {root};
+  const root: SimpleMetrics = getEmptySimpleMetrics("Execution time report");
+  const report: ReportObject = {root};
 
-    root.time.startTime = performance.now();
+  root.time.startTime = performance.now();
 
-    for (let idx = 0; idx < fns.length; idx++) {
-        const fnObject = fns[idx];
-        report[idx] = await getFunctionMetrics(fnObject.fn, fnObject.input, fnObject.expected);
-    }
+  for (let idx = 0; idx < fns.length; idx++) {
+    const fnObject = fns[idx];
+    report[idx] = await getFunctionMetrics(fnObject.fn, fnObject.input, fnObject.expected);
+  }
 
-    root.time.endTime = performance.now();
-    root.time.total = root.time.endTime - root.time.startTime!;
+  root.time.endTime = performance.now();
+  root.time.total = root.time.endTime - root.time.startTime!;
 
-    return report;
+  return report;
 };
 
 export default {
-    getFunctionMetrics,
-    getReport,
+  getFunctionMetrics,
+  getReport,
 };

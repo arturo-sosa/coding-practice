@@ -8,13 +8,13 @@ import {FunctionMetrics, getReport} from "../utils/report";
  * @returns {Array<number>} an array containing a fibonacci sequence up to maxValue
  */
 const getFibonacciNumbers = (fib: Array<number>, maxValue: number): Array<number> => {
-    const length = fib.length;
-    const nextNumber = fib[length - 2] + fib[length - 1];
+  const length = fib.length;
+  const nextNumber = fib[length - 2] + fib[length - 1];
 
-    if (nextNumber > maxValue) return fib;
+  if (nextNumber > maxValue) return fib;
 
-    const numbers = [...fib, nextNumber];
-    return getFibonacciNumbers(numbers, maxValue);
+  const numbers = [...fib, nextNumber];
+  return getFibonacciNumbers(numbers, maxValue);
 };
 
 /**
@@ -23,26 +23,26 @@ const getFibonacciNumbers = (fib: Array<number>, maxValue: number): Array<number
  * @returns {number} the sum of even values up to maxValue in the sequence
  */
 const getEvenFibonacciSum = (maxNumber: number) => {
-    if (maxNumber <= 2) return 2;
+  if (maxNumber <= 2) return 2;
 
-    const numbers = getFibonacciNumbers([1, 2], maxNumber);
-    return numbers.reduce((acc: number, value: number) => value % 2 === 0 ? acc + value : acc, 0);
+  const numbers = getFibonacciNumbers([1, 2], maxNumber);
+  return numbers.reduce((acc: number, value: number) => value % 2 === 0 ? acc + value : acc, 0);
 };
 
 (async () => {
-    const report = await getReport([
-        {
-            fn: (maxValue: number) => getEvenFibonacciSum(maxValue),
-            input: [89],
-            expected: 44,
-        },
-        {
-            fn: (maxValue: number) => getEvenFibonacciSum(maxValue),
-            input: [4000000],
-            expected: "???",
-        },
-    ]);
+  const report = await getReport([
+    {
+      fn: (maxValue: number) => getEvenFibonacciSum(maxValue),
+      input: [89],
+      expected: 44,
+    },
+    {
+      fn: (maxValue: number) => getEvenFibonacciSum(maxValue),
+      input: [4000000],
+      expected: "???",
+    },
+  ]);
 
-    console.log(report);
-    console.log("Problem solution:", (report[1] as FunctionMetrics).fn.output);
+  console.log(report);
+  console.log("Problem solution:", (report[1] as FunctionMetrics).fn.output);
 })();

@@ -7,43 +7,43 @@ import {getReport} from "../utils/report";
  * @returns {boolean} truthy value if is a perfect square, falsy value if it is not
  */
 const isPerfectSquare = (n: number): boolean => {
-    if (n < 0) return false;
-    return Number.isInteger(Math.sqrt(n));
+  if (n < 0) return false;
+  return Number.isInteger(Math.sqrt(n));
 };
 
 (async () => {
-    const report = await getReport([
-        {
-            fn: (n: number) => isPerfectSquare(n),
-            input: [-1],
-            expected: false,
-        },
-        {
-            fn: (n: number) => isPerfectSquare(n),
-            input: [0],
-            expected: true,
-        },
-        {
-            fn: (n: number) => isPerfectSquare(n),
-            input: [3],
-            expected: false,
-        },
-        {
-            fn: (n: number) => isPerfectSquare(n),
-            input: [4],
-            expected: true,
-        },
-        {
-            fn: (n: number) => isPerfectSquare(n),
-            input: [25],
-            expected: true,
-        },
-        {
-            fn: (n: number) => isPerfectSquare(n),
-            input: [26],
-            expected: false,
-        },
-    ]);
+  const report = await getReport([
+    {
+      fn: (n: number) => isPerfectSquare(n),
+      input: [-1],
+      expected: false,
+    },
+    {
+      fn: (n: number) => isPerfectSquare(n),
+      input: [0],
+      expected: true,
+    },
+    {
+      fn: (n: number) => isPerfectSquare(n),
+      input: [3],
+      expected: false,
+    },
+    {
+      fn: (n: number) => isPerfectSquare(n),
+      input: [4],
+      expected: true,
+    },
+    {
+      fn: (n: number) => isPerfectSquare(n),
+      input: [25],
+      expected: true,
+    },
+    {
+      fn: (n: number) => isPerfectSquare(n),
+      input: [26],
+      expected: false,
+    },
+  ]);
 
-    console.log(report);
+  console.log(report);
 })();

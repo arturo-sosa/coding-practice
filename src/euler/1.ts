@@ -8,32 +8,32 @@ import {FunctionMetrics, getReport} from "../utils/report";
  * @returns {number} the sum of numbers from 0 to limit that are divisible by divisors
  */
 const getDivisibleNumbersSum = (divisors: Array<number>, limit: number) => {
-    const divisibleNumbers: Array<number> = [];
+  const divisibleNumbers: Array<number> = [];
 
-    for (let current = 1; current < limit; current++) {
-        const isDivisible = divisors.some(div => current % div === 0);
+  for (let current = 1; current < limit; current++) {
+    const isDivisible = divisors.some(div => current % div === 0);
 
-        if (isDivisible)
-            divisibleNumbers.push(current);
-    }
+    if (isDivisible)
+      divisibleNumbers.push(current);
+  }
 
-    return divisibleNumbers.reduce((acc, value) => acc + value, 0);
+  return divisibleNumbers.reduce((acc, value) => acc + value, 0);
 };
 
 (async () => {
-    const report = await getReport([
-        {
-            fn: (divisors: Array<number>, limit: number) => getDivisibleNumbersSum(divisors, limit),
-            input: [[3, 5], 10],
-            expected: 23,
-        },
-        {
-            fn: (divisors: Array<number>, limit: number) => getDivisibleNumbersSum(divisors, limit),
-            input: [[3, 5], 1000],
-            expected: "???",
-        },
-    ]);
+  const report = await getReport([
+    {
+      fn: (divisors: Array<number>, limit: number) => getDivisibleNumbersSum(divisors, limit),
+      input: [[3, 5], 10],
+      expected: 23,
+    },
+    {
+      fn: (divisors: Array<number>, limit: number) => getDivisibleNumbersSum(divisors, limit),
+      input: [[3, 5], 1000],
+      expected: "???",
+    },
+  ]);
 
-    console.log(report);
-    console.log("Problem solution:", (report[1] as FunctionMetrics).fn.output);
+  console.log(report);
+  console.log("Problem solution:", (report[1] as FunctionMetrics).fn.output);
 })();

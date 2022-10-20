@@ -6,26 +6,26 @@ import {getReport} from "../../utils/report";
  * @returns {number} the absolute difference from arr diagonals
  */
 const diagonalDifference = (arr: number[][]): number => {
-    const diagonals = arr.reduce((acc, value, idx) => {
-        return [acc[0] += value[idx], acc[1] += value[value.length - idx - 1]];
-    }, [0, 0]);
+  const diagonals = arr.reduce((acc, value, idx) => {
+    return [acc[0] += value[idx], acc[1] += value[value.length - idx - 1]];
+  }, [0, 0]);
 
-    return Math.abs(diagonals[0] - diagonals[1]);
+  return Math.abs(diagonals[0] - diagonals[1]);
 };
 
 (async () => {
-    const report = await getReport([
-        {
-            fn: (arr: number[][]) => diagonalDifference(arr),
-            input: [[[1, 2, 3], [4, 5, 6], [9, 8, 9]]],
-            expected: 2,
-        },
-        {
-            fn: (arr: number[][]) => diagonalDifference(arr),
-            input: [[[11, 2, 4], [4, 5, 6], [10, 8, -12]]],
-            expected: 15,
-        },
-    ]);
+  const report = await getReport([
+    {
+      fn: (arr: number[][]) => diagonalDifference(arr),
+      input: [[[1, 2, 3], [4, 5, 6], [9, 8, 9]]],
+      expected: 2,
+    },
+    {
+      fn: (arr: number[][]) => diagonalDifference(arr),
+      input: [[[11, 2, 4], [4, 5, 6], [10, 8, -12]]],
+      expected: 15,
+    },
+  ]);
 
-    console.log(report);
+  console.log(report);
 })();
