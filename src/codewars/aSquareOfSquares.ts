@@ -15,32 +15,32 @@ const isPerfectSquare = (n: number): boolean => {
 (async () => {
   const report = await getReport([
     {
-      fn: (n: number) => isPerfectSquare(n),
+      fn: isPerfectSquare,
       input: [-1],
       expected: false,
     },
     {
-      fn: (n: number) => isPerfectSquare(n),
+      fn: isPerfectSquare,
       input: [0],
       expected: true,
     },
     {
-      fn: (n: number) => isPerfectSquare(n),
+      fn: isPerfectSquare,
       input: [3],
       expected: false,
     },
     {
-      fn: (n: number) => isPerfectSquare(n),
+      fn: isPerfectSquare,
       input: [4],
       expected: true,
     },
     {
-      fn: (n: number) => isPerfectSquare(n),
+      fn: isPerfectSquare,
       input: [25],
       expected: true,
     },
     {
-      fn: (n: number) => isPerfectSquare(n),
+      fn: isPerfectSquare,
       input: [26],
       expected: false,
     },
